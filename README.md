@@ -1,4 +1,4 @@
-# Sample Spring Kafka Microservices  
+# Spring Kafka Microservices  
 
 This project demonstrates a **microservices-based architecture** using **Spring Boot** and **Apache Kafka** for real-time communication between distributed services. It showcases how to design and implement **event-driven systems** where microservices publish and consume messages asynchronously, enabling scalability and fault tolerance.  
 
