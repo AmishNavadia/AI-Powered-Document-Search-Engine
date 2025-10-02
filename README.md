@@ -1,25 +1,25 @@
-# AI-Powered Document Search Engine  
+# Sample Spring Kafka Microservices  
 
-An intelligent document search system that uses **Natural Language Processing (NLP)** and **semantic embeddings** to allow users to search large collections of documents using natural language queries. Unlike keyword-based search, this system understands **context and meaning** to return more relevant results.  
+This project demonstrates a **microservices-based architecture** using **Spring Boot** and **Apache Kafka** for real-time communication between distributed services. It showcases how to design and implement **event-driven systems** where microservices publish and consume messages asynchronously, enabling scalability and fault tolerance.  
 
 ---
 
 ## 🚀 Features
-- Semantic search using vector embeddings (Sentence-BERT / Transformers).  
-- Supports ingestion of PDF, TXT, and DOCX files.  
-- REST API for uploading documents and querying.  
-- React-based UI for interactive search.  
-- Scalable architecture with Docker + PostgreSQL + FAISS/Elasticsearch.  
+- Event-driven communication with **Apache Kafka**.  
+- Multiple Spring Boot microservices interacting asynchronously.  
+- Dockerized setup for easy local deployment.  
+- REST endpoints to produce/consume Kafka events.  
+- Example use case: banking transactions & notifications.  
 
 ---
 
 ## 🛠️ Technologies Used
-- **Backend:** Python, FastAPI  
-- **NLP & ML:** HuggingFace Transformers, Sentence-BERT, scikit-learn  
-- **Database / Search Index:** PostgreSQL, FAISS, Elasticsearch  
-- **Frontend:** React.js, TailwindCSS  
+- **Backend Framework:** Spring Boot, Spring Cloud  
+- **Messaging System:** Apache Kafka  
+- **Build Tool:** Maven / Gradle  
 - **Containerization:** Docker, Docker Compose  
-- **Cloud (Optional):** Google Cloud / AWS (S3, Pub/Sub, Lambda)  
+- **Database (optional):** PostgreSQL / MySQL  
+- **Other Tools:** Zookeeper, Lombok, Swagger  
 
 ---
 
@@ -27,36 +27,42 @@ An intelligent document search system that uses **Natural Language Processing (N
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/AmishNavadia/AI-Powered-Document-Search-Engine.git
-cd AI-Powered-Document-Search-Engine
+git clone https://github.com/AmishNavadia/spring-kafka-microservices.git
+cd spring-kafka-microservices
 ```
-### 2. Backend Setup
-```bash
-cd backend
-python -m venv venv
 
-# Activate environment
-# On Linux/Mac:
-source venv/bin/activate
-# On Windows:
-venv\Scripts\activate
-pip install -r requirements.txt
-```
-### 3. Frontend Setup
+2. Start Kafka with Docker
+
+Make sure Docker is installed and running. Start Kafka & Zookeeper using Docker Compose:
 ```bash
-Copy code
-cd frontend
-npm install
-npm start
+docker-compose up -d
 ```
-### 4. Run with Docker (Alternative)
+3. Build the Microservices
+
+Navigate into each microservice folder (e.g., producer-service, consumer-service) and run:
 ```bash
-Copy code
+mvn clean install
+```
+4. Run the Services
+
+You can start each Spring Boot service with:
+```bash
+mvn spring-boot:run
+```
+
+Or run all together with Docker Compose (if configured):
+```bash
 docker-compose up --build
 ```
+
 📊 Usage
-Upload documents via the web interface or API.
 
-Enter a natural language query (example: "What are the challenges in distributed systems?").
+Start the Kafka broker & microservices.
 
-Receive semantically ranked results.
+Use the Producer REST API to send messages.
+
+POST http://localhost:8080/api/v1/messages
+Body: { "message": "Hello Kafka" }
+
+
+The Consumer Service will automatically receive and log/process the message.
